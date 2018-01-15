@@ -50,6 +50,8 @@ const routes = [
         beforeEnter : (to, from, next) => {
             if (AuthService.loggedIn) {
                 next(false);
+            } else {
+                next();
             }
         }
     },
@@ -59,6 +61,8 @@ const routes = [
         beforeEnter: (to, from, next) => {
             if (AuthService.loggedIn) {
                 next(false);
+            } else {
+                next();
             }
         }
     },
