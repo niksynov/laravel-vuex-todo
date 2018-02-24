@@ -31,10 +31,8 @@
     </div>
 </template>
 <script>
-
     import AuthService from '../../services/AuthService';
     import NavigationComponent from '../navigation/NavigationComponent.vue';
-
     export default {
         data() {
             return {
@@ -47,13 +45,12 @@
             login() {
                 this.$validator.validateAll().then((result) => {
                     if (result) {
-                        const { email, password } = this;
-                        AuthService.loginUser({email, password}).then(() => {
-                            this.$router.push('/tasks');
-                            Event.$emit('displaySuccess', 'Login success');
-                            Event.$emit('login');
-                        }).catch(({message}) => {
-                            Event.$emit('displayError', message);
+                        const {email, password} = this;
+                        AuthService.loginUser({email, password}).then((successResponse) => {
+                            if (successResponse) {
+                                this.$router.push('/tasks');
+                                Event.$emit('login');
+                            }
                         });
                     }
                 });

@@ -1,13 +1,10 @@
-// Fonts
+@import "~materialize-css/sass/materialize.scss";
 @import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
-// Variables
 @import "variables";
-@import "~bootstrap-sass/assets/stylesheets/bootstrap";
 
 .app {
   display: flex;
   flex-direction: column;
-  font-family: $font-family-sans-serif;
   &__content {
     display: flex;
     width: 100%;
@@ -134,12 +131,6 @@
   }
 }
 
-.alert-component {
-  position: absolute;
-  right: 0;
-  top: 0;
-}
-
 .alert-component-error, .alert-component-success {
   position: relative;
   padding: 30px 100px;
@@ -156,12 +147,30 @@
   }
 }
 
+.alert-component {
+  position: absolute;
+  z-index: 9999;
+  right: 0;
+  top: 0;
+}
+
 .alert-component-success {
-  background: darkgreen;
+  background: #43a047;
 }
 
 .alert-component-error {
-  background: darkred;
+  background: #c62828;
 }
 
+.task-component {
+  width: 75%;
+  margin: auto;
+  i {
+    cursor: pointer;
+  }
+}
 
+.done-task-component {
+  width: 75%;
+  margin: auto;
+}

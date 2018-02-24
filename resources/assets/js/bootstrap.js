@@ -53,3 +53,8 @@ if (token) {
 //     cluster: 'mt1',
 //     encrypted: true
 // });
+
+/**
+ * Materialize
+ */
+require('materialize-css');

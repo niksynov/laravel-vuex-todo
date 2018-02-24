@@ -12,14 +12,13 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
     <div id="app" class="app">
-        <alert-component></alert-component>
         <navigation-component></navigation-component>
         <div class="app__content">
-            <router-view></router-view>
+            <router-view :key="$router.fullPath"></router-view>
         </div>
     </div>
     <!-- Scripts -->
