@@ -6,7 +6,6 @@ jobs:
       - image: circleci/php:7.1-node-browsers
     steps:
       - checkout
-      - run: sudo apt install -y libsqlite3-dev zlib1g-dev
       - run: composer install
       - run: cp .env.example .env
       - run: php artisan key:generate
