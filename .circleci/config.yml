@@ -2,60 +2,11 @@ version: 2
 
 jobs:
   build:
-    working_directory: /var/www
-
-    environment:
-      BASH_ENV: ~/.bashrc
-
     docker:
-      - image: php:7.1-cli
-        environment:
-          APP_ENV=testing
-
-      - image: circleci/mysql:5.7
-        environment:
-          MYSQL_ALLOW_EMPTY_PASSWORD=true
-          MYSQL_ROOT_HOST="%"
-          MYSQL_USER=root
-
+      - image: circleci/php:7.1-node-browsers
     steps:
-
-      - run:
-          name: Install System Dependencies
-          command: |
-            apt-get update
-            apt-get install -y libmcrypt-dev git unzip wget libpng-dev
-            # These are required for e2e tests
-            apt-get install -y libsqlite3-dev libnss3 libgconf-2-4 libfontconfig1 chromium xvfb
-
-      - run:
-          name: Install PHP Extensions
-          command: docker-php-ext-install -j$(nproc) mcrypt pdo_mysql pdo_sqlite gd zip
-
       - checkout
-
-      - run:
-          name: Install Composer Dependencies
-          command: docker run --rm -v $(pwd):/app composer install
-
-      - run:
-          name: Setup Environment
-          command: |
-            cp .env.example .env
-            php artisan key:generate
-            php artisan passport:keys
-
-      - run:
-          name: Unit Tests
-          command: vendor/bin/phpunit
-
-      - run:
-          name: Install Node Dependencies
-          command: |
-            node --version
-            npm --version
-            npm install
-
-      - run:
-          name: Webpack
-          command: npm run prod
+      - run: sudo apt install -y libsqlite3-dev zlib1g-dev
+      - run: composer install
+      - run: cp .env.example .env
+      - run: php artisan key:generate
