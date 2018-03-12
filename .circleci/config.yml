@@ -7,17 +7,6 @@ jobs:
     environment:
       BASH_ENV: ~/.bashrc
 
-    docker:
-      - image: php:7.1-browsers
-        environment:
-          APP_ENV=testing
-
-      - image: circleci/mysql:5.7
-        environment:
-          MYSQL_ALLOW_EMPTY_PASSWORD=true
-          MYSQL_ROOT_HOST="%"
-          MYSQL_USER=root
-
     steps:
 
       - run:
@@ -36,7 +25,7 @@ jobs:
 
       - run:
           name: Install Composer Dependencies
-          command: composer install --no-progress --no-suggest
+          command: docker run --rm -v $(pwd):/app composer install
 
       - run:
           name: Setup Environment
