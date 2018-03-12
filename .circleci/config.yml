@@ -35,4 +35,5 @@ jobs:
 
       # run tests!
       - run: php artisan key:generate
+
       - run: vendor/bin/phpunit
