@@ -1,43 +1,73 @@
-# PHP CircleCI 2.0 configuration file
-#
-# Check https://circleci.com/docs/2.0/language-php/ for more details
-#
 version: 2
+
 jobs:
   build:
-    docker:
-      # specify the version you desire here
-      - image: circleci/php:7.1-node-browsers
-
-      # Specify service dependencies here if necessary
-      # CircleCI maintains a library of pre-built images
-      # documented at https://circleci.com/docs/2.0/circleci-images/
-      # - image: circleci/mysql:9.4
-
     working_directory: /var/www
 
+    environment:
+      BASH_ENV: ~/.bashrc
+
+    docker:
+      - image: php:7.1-cli
+        environment:
+          APP_ENV=testing
+
+      - image: circleci/mysql:5.7
+        environment:
+          MYSQL_ALLOW_EMPTY_PASSWORD=true
+          MYSQL_ROOT_HOST="%"
+          MYSQL_USER=root
+
     steps:
+
+      - run:
+          name: Install System Dependencies
+          command: |
+            apt-get update
+            apt-get install -y libmcrypt-dev git unzip wget libpng-dev
+            # These are required for e2e tests
+            apt-get install -y libsqlite3-dev libnss3 libgconf-2-4 libfontconfig1 chromium xvfb
+
+      - run:
+          name: Install PHP Extensions
+          command: docker-php-ext-install -j$(nproc) mcrypt pdo_mysql pdo_sqlite gd zip
+
       - checkout
 
-      # Download and cache dependencies
-      - restore_cache:
-          keys:
-          - v1-dependencies-{{ checksum "composer.json" }}
-          # fallback to using the latest cache if no exact match is found
-          - v1-dependencies-
-
-      - run: composer install -n --prefer-dist
-
-      - save_cache:
-          paths:
-            - ./vendor
-          key: v1-dependencies-{{ checksum "composer.json" }}
-
-      # run tests!
       - run:
-               name: Setup Laravel testing environment variables for CircleCI test
-               command: cp .env.testing .env
+          name: Install NVM
+          command: bash .circleci/nvm.sh
 
-      - run: php artisan key:generate
+      - run:
+          name: Install Composer
+          command: bash .circleci/composer.sh
 
-      - run: vendor/bin/phpunit
+      - run:
+          name: Install Composer Dependencies
+          command: composer install --no-progress --no-suggest
+
+      - run:
+          name: PHPCS
+          command: ./vendor/bin/phpcs --standard=PSR2 -p app config
+
+      - run:
+          name: Setup Environment
+          command: |
+            cp .env.dusk.testing .env
+            php artisan key:generate
+            php artisan passport:keys
+
+      - run:
+          name: Unit Tests
+          command: APP_ENV=testing DB_DATABASE=circle_test ./vendor/bin/phpunit
+
+      - run:
+          name: Install Node Dependencies
+          command: |
+            node --version
+            npm --version
+            npm install
+
+      - run:
+          name: Webpack
+          command: npm run prod
