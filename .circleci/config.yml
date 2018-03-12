@@ -35,27 +35,19 @@ jobs:
       - checkout
 
       - run:
-          name: Install Composer
-          command: bash .circleci/composer.sh
-
-      - run:
           name: Install Composer Dependencies
           command: composer install --no-progress --no-suggest
 
       - run:
-          name: PHPCS
-          command: ./vendor/bin/phpcs --standard=PSR2 -p app config
-
-      - run:
           name: Setup Environment
           command: |
-            cp .env.dusk.testing .env
+            cp .env.example .env
             php artisan key:generate
             php artisan passport:keys
 
       - run:
           name: Unit Tests
-          command: APP_ENV=testing DB_DATABASE=circle_test ./vendor/bin/phpunit
+          command: vendor/bin/phpunit
 
       - run:
           name: Install Node Dependencies
