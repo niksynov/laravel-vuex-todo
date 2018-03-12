@@ -35,10 +35,6 @@ jobs:
       - checkout
 
       - run:
-          name: Install NVM
-          command: bash .circleci/nvm.sh
-
-      - run:
           name: Install Composer
           command: bash .circleci/composer.sh
 
