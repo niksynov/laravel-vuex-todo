@@ -9939,6 +9939,10 @@ button.picker__close:focus {
   background: #36495D;
 }
 
+.home-component {
+  text-align: center;
+}
+
 .home-component__images {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -10078,5 +10082,12 @@ button.picker__close:focus {
 .done-task-component {
   width: 75%;
   margin: auto;
+}
+
+@media only screen and (max-width: 414px) {
+  .login-component__form,
+  .register-component__form {
+    margin: 0 15px;
+  }
 }
 
