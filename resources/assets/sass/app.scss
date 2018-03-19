@@ -69,6 +69,7 @@
 }
 
 .home-component {
+  text-align: center;
   &__images {
     display: flex;
     flex-direction: column;
@@ -173,4 +174,12 @@
 .done-task-component {
   width: 75%;
   margin: auto;
+}
+
+@media only screen and (max-width: 414px) {
+  .login-component, .register-component {
+    &__form {
+      margin: 0 15px;
+    }
+  }
 }
