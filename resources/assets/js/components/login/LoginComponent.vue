@@ -9,7 +9,7 @@
                     :class="{'input': true, 'is-danger': errors.has('email')}"
                     class="form-control"
                     id="email"
-                    type="text"
+                    type="email"
                     placeholder="Type your email..."/>
             <div class="login-component__form__alert-text">
                 <span v-show="errors.has('email')">{{ errors.first('email') }}</span>
