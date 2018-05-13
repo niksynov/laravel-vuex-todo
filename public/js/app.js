@@ -68162,13 +68162,19 @@ var staticRenderFns = [
                 _vm._v("To do app made by Vuex, Laravel and Materialize")
               ]),
               _vm._v(" "),
-              _c("a", { attrs: { href: "" } }, [
-                _c("img", {
-                  attrs: {
-                    src: "https://image.flaticon.com/icons/svg/25/25231.svg"
-                  }
-                })
-              ])
+              _c(
+                "a",
+                {
+                  attrs: { href: "https://github.com/NickSynev/LaravelVueToDo" }
+                },
+                [
+                  _c("img", {
+                    attrs: {
+                      src: "https://image.flaticon.com/icons/svg/25/25231.svg"
+                    }
+                  })
+                ]
+              )
             ])
           ])
         ]),
