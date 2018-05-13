@@ -67599,7 +67599,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
             __WEBPACK_IMPORTED_MODULE_0__store_index__["a" /* default */].dispatch('logout').then(function () {
                 _this7.$router.push('/login');
-                Materialize.toast('Logged out');
+                Materialize.toast('Logged out', 5000);
             });
         },
         setActiveTask: function setActiveTask(task) {
@@ -68111,7 +68111,9 @@ var staticRenderFns = [
               _c(
                 "a",
                 {
-                  attrs: { href: "https://github.com/NickSynev/LaravelVueToDo" }
+                  attrs: {
+                    href: "https://github.com/NickSynev/LaravelVueToDo/"
+                  }
                 },
                 [
                   _c("img", {

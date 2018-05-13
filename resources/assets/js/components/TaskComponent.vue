@@ -158,7 +158,7 @@
             logout() {
                 store.dispatch('logout').then(() => {
                     this.$router.push('/login');
-                    Materialize.toast('Logged out');
+                    Materialize.toast('Logged out', 5000);
                 });
             },
 

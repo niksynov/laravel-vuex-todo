@@ -6,7 +6,7 @@
                     <div class="col l6 s12">
                         <h5 class="white-text">Vuetodo</h5>
                         <p class="grey-text text-lighten-4">To do app made by Vuex, Laravel and Materialize</p>
-                        <a href="https://github.com/NickSynev/LaravelVueToDo"><img src="https://image.flaticon.com/icons/svg/25/25231.svg"></a>
+                        <a href="https://github.com/NickSynev/LaravelVueToDo/"><img src="https://image.flaticon.com/icons/svg/25/25231.svg"></a>
                     </div>
                 </div>
             </div>
