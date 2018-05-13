@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <link rel="shortcut icon" href="https://upload.wikimedia.org/wikipedia/commons/f/f1/Vue.png">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -16,10 +16,7 @@
 </head>
 <body>
     <div id="app" class="app">
-        <navigation-component></navigation-component>
-        <div class="app__content">
-            <router-view :key="$router.fullPath"></router-view>
-        </div>
+        <root></root>
     </div>
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>

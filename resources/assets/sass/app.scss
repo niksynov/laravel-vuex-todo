@@ -2,6 +2,17 @@
 @import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
 @import "variables";
 
+html {
+  min-height: 100%;
+}
+
+body.dashboard {
+  background: linear-gradient(to bottom, #b9c7b1 0%, #fde9cc 100%);
+  background-repeat: no-repeat;
+  min-height: 100%;
+  height: 100%;
+}
+
 .app {
   display: flex;
   flex-direction: column;
@@ -17,56 +28,66 @@
 }
 
 .navigation-component {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  height: 50px;
-  width: 100%;
-  background-color: #47B784;
-  a {
-    text-decoration: none;
-    color: white;
-    padding: 14px;
-  }
-  &__profile {
-    margin-left: auto;
-    cursor: pointer;
-    position: relative;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    &__parent-link-active {
-      background: #36495d;
-      padding-top: 17px !important;
-      padding-bottom: 17px !important;
+  nav {
+    background-color: #47B784;
+    img {
+      background: #E53935;
+      height: 100%;
+      padding: 10px;
     }
-    &__menu {
-      display: none;
-      &__expanded {
-        display: flex !important;
-        display: -webkit-box;
-        display: -ms-flexbox;
-        -webkit-box-orient: vertical;
-        -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-        flex-direction: column !important;
-        position: absolute;
-        background: #47B784;
-        color: white;
-        z-index: 0;
-        top: 35px;
-        right: 0;
-        text-align: center;
-        width: 200px;
-      }
-    }
-  }
-
-  .router-link-active {
-    background: #36495D;
   }
 }
+
+//.navigation-component {
+//  display: flex;
+//  justify-content: flex-start;
+//  align-items: center;
+//  width: 100%;
+//  background-color: #47B784;
+//  a {
+//    text-decoration: none;
+//    color: white;
+//    padding: 14px;
+//  }
+//  &__profile {
+//    margin-left: auto;
+//    cursor: pointer;
+//    position: relative;
+//    -webkit-user-select: none;
+//    -moz-user-select: none;
+//    -ms-user-select: none;
+//    user-select: none;
+//    &__parent-link-active {
+//      background: #36495d;
+//      padding-top: 17px !important;
+//      padding-bottom: 17px !important;
+//    }
+//    &__menu {
+//      display: none;
+//      &__expanded {
+//        display: flex !important;
+//        display: -webkit-box;
+//        display: -ms-flexbox;
+//        -webkit-box-orient: vertical;
+//        -webkit-box-direction: normal;
+//        -ms-flex-direction: column;
+//        flex-direction: column !important;
+//        position: absolute;
+//        background: #47B784;
+//        color: white;
+//        z-index: 0;
+//        top: 35px;
+//        right: 0;
+//        text-align: center;
+//        width: 200px;
+//      }
+//    }
+//  }
+//
+//  .router-link-active {
+//    background: #36495D;
+//  }
+//}
 
 .home-component {
   text-align: center;
@@ -108,27 +129,7 @@
   }
 
   button {
-    margin: 0 auto;
-    background-color: #47b785;
-    -moz-border-radius: 28px;
-    -webkit-border-radius: 28px;
-    border-radius: 28px;
-    border: 1px solid #ffffff;
-    display: inline-block;
-    cursor: pointer;
-    color: #ffffff;
-    font-size: 17px;
-    padding: 15px 55px;
-    text-decoration: none;
-    text-shadow: 0px 1px 0px #2f6627;
-    outline: none;
-    &:hover {
-      background-color: #36495d;
-    }
-    &:active {
-      position: relative;
-      top: 1px;
-    }
+    margin-bottom: 25px;
   }
 }
 
@@ -166,14 +167,54 @@
 .task-component {
   width: 75%;
   margin: auto;
+  user-input: none;
+  .task-text {
+    background: rgba(102, 137, 100, 0.75) !important;
+    color: white !important;
+  }
+  .task-text::placeholder {
+    color: white !important;
+  }
   i {
     cursor: pointer;
   }
+  .loading {
+    color: white;
+  }
+  li {
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none;
+  }
+
+  .done-tasks {
+    li {
+      text-decoration: line-through;
+      opacity: .6;
+    }
+  }
+
+  .avatar-image {
+    margin: 0 auto;
+    width: 50px;
+  }
+
 }
 
 .done-task-component {
   width: 75%;
   margin: auto;
+}
+
+footer {
+  background-color: #47B784 !important;
+  margin-top: 200px;
+  img {
+    width: 50px;
+  }
 }
 
 @media only screen and (max-width: 414px) {

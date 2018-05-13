@@ -3,54 +3,18 @@ import AuthService from './services/AuthService';
 export const routes = [
     {
         path: '/',
-        redirect: '/home'
-    },
-    {
-        path: '/home',
-        component: require('./components/home/HomeComponent.vue')
+        redirect: '/tasks'
     },
     {
         path: '/login',
-        component: require('./components/login/LoginComponent.vue'),
-        beforeEnter: (to, from, next) => {
-            if (AuthService.loggedIn) {
-                next(false);
-            } else {
-                next();
-            }
-        }
+        component: require('./components/LoginComponent.vue'),
     },
     {
         path: '/register',
-        component: require('./components/register/RegisterComponent.vue'),
-        beforeEnter: (to, from, next) => {
-            if (AuthService.loggedIn) {
-                next(false);
-            } else {
-                next();
-            }
-        }
+        component: require('./components/RegisterComponent.vue'),
     },
     {
         path: '/tasks',
-        component: require('./components/task/TaskComponent.vue'),
-        beforeEnter: (to, from, next) => {
-            if (AuthService.loggedIn) {
-                next();
-            } else {
-                next('/login');
-            }
-        }
-    },
-    {
-        path: '/done-tasks',
-        component: require('./components/task/DoneTaskComponent.vue'),
-        beforeEnter: (to, from, next) => {
-            if (AuthService.loggedIn) {
-                next();
-            } else {
-                next('/login');
-            }
-        }
+        component: require('./components/TaskComponent.vue'),
     }
 ];
