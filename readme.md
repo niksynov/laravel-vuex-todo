@@ -2,4 +2,4 @@
 
 ToDo web application made by Laravel and Vuex
 
-http://vuetodo.niksynev.xyz/
+https://vuetodo.niksynev.xyz/
