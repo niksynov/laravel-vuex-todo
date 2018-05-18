@@ -16,7 +16,7 @@
 </head>
 <body>
     <div id="app" class="app">
-        <root></root>
+        <router-view></router-view>
     </div>
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>

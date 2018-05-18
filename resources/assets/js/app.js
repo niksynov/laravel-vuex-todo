@@ -15,9 +15,6 @@ Vue.use(VeeValidate);
 
 Vue.use(Materials);
 
-Vue.component('root',
-    require('./components/RootComponent.vue'));
-
 const router = new VueRouter({
     routes,
 });

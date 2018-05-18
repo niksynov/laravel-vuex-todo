@@ -18,7 +18,7 @@ class TaskController extends Controller
 
             $user = JWTAuth::parseToken()->authenticate();
 
-            $tasks = $user->tasks()->get();
+            $tasks = $user->tasks()->orderBy('created_at', 'DESC')->get();
 
             return TaskResource::collection($tasks)->response();
 

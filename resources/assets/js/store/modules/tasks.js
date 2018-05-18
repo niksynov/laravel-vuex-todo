@@ -86,23 +86,21 @@ const mutations = {
 
     createTask(state, task) {
         const taskObj = {id: task.id, text: task.text, done: 0};
-        state.tasks.push(taskObj);
+        state.tasks.unshift(taskObj);
     },
 
     markTaskAsDone(state, task) {
         const taskObj = state.tasks.find(stateTask => stateTask.id == task.id);
         Vue.set(taskObj, 'done', 1);
-        console.log(taskObj, state.tasks);
     },
 
     updateTask(state, task) {
-        console.log('ss', task);
         const taskObj = state.tasks.find(stateTask => stateTask.id == task.id);
         Vue.set(taskObj, 'text', task.text);
     },
 
     deleteTask(state, task) {
-       state.tasks = state.tasks.filter(stateTask => stateTask.id != task.id);
+        state.tasks = state.tasks.filter(stateTask => stateTask.id != task.id);
     },
 
     updateTaskText(state, text) {
@@ -111,6 +109,14 @@ const mutations = {
 
     setActiveTask(state, task) {
         state.activeTask = task;
+    },
+
+    clearActiveTask(state) {
+        state.activeTask = {
+            id: null,
+            text: null,
+            done: null,
+        }
     }
 };
 

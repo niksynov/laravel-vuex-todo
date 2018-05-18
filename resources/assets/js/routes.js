@@ -1,3 +1,8 @@
+import LoginComponent from './components/LoginComponent.vue';
+import RegisterComponent from './components/RegisterComponent.vue';
+import DashboardComponent from './components/DashboardComponent.vue';
+import TaskComponent from './components/TaskComponent.vue';
+
 export const routes = [
     {
         path: '/',
@@ -5,14 +10,21 @@ export const routes = [
     },
     {
         path: '/login',
-        component: require('./components/LoginComponent.vue'),
+        component: LoginComponent,
     },
     {
         path: '/register',
-        component: require('./components/RegisterComponent.vue'),
+        component: RegisterComponent,
     },
     {
-        path: '/tasks',
-        component: require('./components/TaskComponent.vue'),
+        path: '/dashboard',
+        redirect: '/dashboard/tasks',
+        component: DashboardComponent,
+        children: [
+            {
+                path: 'tasks',
+                component: TaskComponent
+            }
+        ]
     }
 ];
