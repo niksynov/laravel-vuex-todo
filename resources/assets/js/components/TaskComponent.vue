@@ -2,10 +2,9 @@
     <div class="task-component">
         <div class="task-component-content">
             <div class="input-field col s12">
-                <i class="material-icons prefix">mode_edit</i>
                 <input v-model="taskText" v-on:keyup.enter="createTask" id="task-text" type="text"
                        class="task-text validate">
-                <label for="task-text">Task text</label>
+                <label for="task-text">Add a task...</label>
             </div>
             <div v-if="!tasksLoaded" class="loading">Loading tasks...</div>
             <ul v-if="tasksLoaded && tasks.length > 0" class="collection tasks">
@@ -156,8 +155,10 @@
                     Materialize.toast('Server error!', 5000);
                 }
                 if (status == 403) {
-                    store.dispatch('logout');
-                    this.$router.push('/login');
+                    store.dispatch('logout').then(() => {
+                        this.$router.push('/login');
+                        Materialize.toast('Logged out', 5000);
+                    });
                 }
             },
 

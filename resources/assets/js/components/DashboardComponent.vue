@@ -3,9 +3,7 @@
         <ul id="dashboard-sidenav" class="side-nav fixed">
             <li>
                 <div class="user-view">
-                    <div class="background">
-                        <img src="https://maxcdn.icons8.com/app/uploads/2016/03/material-1-1000x563.jpg">
-                    </div>
+                    <div class="background"></div>
                     <a href="#"><img class="avatar-image"
                                           src="https://ssl.gstatic.com/images/branding/product/1x/avatar_circle_blue_512dp.png"></a>
                     <span class="white-text name">{{user.name}}</span>
@@ -21,7 +19,9 @@
             </li>
         </ul>
         <a href="#" data-activates="dashboard-sidenav" class="button-collapse"><i class="material-icons">menu</i></a>
-        <router-view></router-view>
+        <div class="dashboard-component-content">
+            <router-view></router-view>
+        </div>
     </div>
 </template>
 <script>

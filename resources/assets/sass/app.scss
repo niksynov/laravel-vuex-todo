@@ -8,9 +8,7 @@ html, body {
   min-height: 100%;
   padding: 0;
   margin: 0;
-
 }
-
 
 .app {
   display: flex;
@@ -28,7 +26,7 @@ html, body {
 
 .navigation-component {
   nav {
-    background-color: #47B784;
+    background-color: $vue-color;
     img {
       background: #E53935;
       height: 100%;
@@ -69,7 +67,7 @@ html, body {
 }
 
 footer {
-  background-color: #47B784 !important;
+  background-color: $vue-color !important;
   margin-top: 200px;
   img {
     width: 50px;

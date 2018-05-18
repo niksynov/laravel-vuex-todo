@@ -1,25 +1,14 @@
 .task-component {
-  padding-left: 300px;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(to bottom, #b9c7b1 0%, #fde9cc 100%);
-  background-repeat: no-repeat;
-  min-height: 100%;
   &-content {
     margin: 10px;
   }
   .task-text {
-    background: rgba(102, 137, 100, 0.75) !important;
-    color: white !important;
-  }
-  @media screen and (max-width: 992px) {
-    padding: 0px;
+    color: #212121 !important;
   }
 
   ul.done-tasks, ul.tasks {
     li {
-       cursor: pointer;
+      cursor: pointer;
     }
   }
 
@@ -28,5 +17,50 @@
       text-decoration: line-through;
       opacity: .6;
     }
+  }
+
+  .collection-item.active {
+    @extend .blue, .lighten-5;
+    color: #000;
+    .secondary-content {
+      @extend .grey-text, .text-darken-2
+    }
+  }
+
+  .collection-item {
+    .secondary-content {
+      @extend .grey-text, .text-darken-2
+    }
+  }
+
+  .btn {
+    background: $vue-color;
+  }
+
+  .input-field label {
+    color: #212121;
+  }
+
+  .input-field input[type=text]:focus + label {
+    color: #212121;
+  }
+  /* label underline focus color */
+  .input-field input[type=text]:focus {
+    border-bottom: 1px solid #212121;
+    box-shadow: 0 1px 0 0 #212121;
+  }
+  /* valid color */
+  .input-field input[type=text].valid {
+    border-bottom: 1px solid #212121;
+    box-shadow: 0 1px 0 0 #212121;
+  }
+  /* invalid color */
+  .input-field input[type=text].invalid {
+    border-bottom: 1px solid #212121;
+    box-shadow: 0 1px 0 0 #212121;
+  }
+  /* icon prefix focus color */
+  .input-field .prefix.active {
+    color: #212121;
   }
 }
