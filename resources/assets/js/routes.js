@@ -6,7 +6,7 @@ import TaskComponent from './components/TaskComponent.vue';
 export const routes = [
     {
         path: '/',
-        redirect: '/tasks'
+        redirect: '/dashboard'
     },
     {
         path: '/login',
