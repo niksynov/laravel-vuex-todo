@@ -21,23 +21,25 @@
                     </a>
                 </li>
             </ul>
-            <button v-if="tasksLoaded && doneTasks.length > 0" v-on:click="doneTasksSeen = !doneTasksSeen"
-                    class="btn waves-effect waves-light">Load done tasks
-            </button>
-            <ul v-if="doneTasksSeen" class="collection done-tasks">
-                <li data-activates="slide-out"
-                    v-for="task in doneTasks" class="collection-item"
-                    v-on:dblclick="taskDoubleClicked"
-                    @click="setActiveTask(task)"
-                    :class="{active: activeTask === task }">
-                    {{task.text}}
-                    <a class="secondary-content">
-                        <i class="material-icons">
-                            check
-                        </i>
-                    </a>
-                </li>
-            </ul>
+            <div v-if="tasksLoaded && doneTasks.length > 0">
+                <button  v-on:click="doneTasksSeen = !doneTasksSeen"
+                        class="btn waves-effect waves-light">Load done tasks
+                </button>
+                <ul v-if="doneTasksSeen" class="collection done-tasks">
+                    <li data-activates="slide-out"
+                        v-for="task in doneTasks" class="collection-item"
+                        v-on:dblclick="taskDoubleClicked"
+                        @click="setActiveTask(task)"
+                        :class="{active: activeTask === task }">
+                        {{task.text}}
+                        <a class="secondary-content">
+                            <i class="material-icons">
+                                check
+                            </i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
             <ul id="slide-out" class="side-nav">
                 <li>
                     <div class="user-view">
