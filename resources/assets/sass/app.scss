@@ -36,6 +36,7 @@ html, body {
 }
 
 .login-component, .register-component {
+  min-height: calc(100vh - 184px);
   display: flex;
   flex-direction: column;
   text-align: center;
@@ -68,7 +69,6 @@ html, body {
 
 footer {
   background-color: $vue-color !important;
-  margin-top: 200px;
   img {
     width: 50px;
   }
