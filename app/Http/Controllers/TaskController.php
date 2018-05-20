@@ -5,8 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Resources\TaskResource;
 use Illuminate\Auth\GuardHelpers;
 use Illuminate\Http\Request;
-use Tymon\JWTAuth\Exceptions\TokenExpiredException;
-use Tymon\JWTAuth\Facades\JWTAuth;
 
 class TaskController extends Controller
 {
@@ -14,110 +12,115 @@ class TaskController extends Controller
 
     public function getUserTasks(Request $request)
     {
-        try {
+        $user = auth()->user();
 
-            $user = JWTAuth::parseToken()->authenticate();
+        $tasks = $user->tasks()->orderBy('created_at', 'DESC')->get();
 
-            $tasks = $user->tasks()->orderBy('created_at', 'DESC')->get();
-
-            return TaskResource::collection($tasks)->response();
-
-        } catch (TokenExpiredException $e) {
-
-            return response()->json(['Forbidden'], 403);
-
-        }
+        return TaskResource::collection($tasks)->response();
     }
 
     public function getUserDoneTasks(Request $request)
     {
-        try {
+        $user = $user = auth()->user();
 
-            $user = JWTAuth::parseToken()->authenticate();
+        $tasks = $user->tasks->where('done', true)->all();
 
-            $tasks = $user->tasks->where('done', true)->all();
-
-            return response()->json($tasks, 200);
-
-        } catch (TokenExpiredException $e) {
-
-            return response()->json(['Forbidden'], 403);
-
-        }
+        return TaskResource::collection($tasks)->response();
     }
 
     public function createNewUserTask(Request $request)
     {
+        \DB::beginTransaction();
+
         try {
 
-            $user = JWTAuth::parseToken()->authenticate();
+            $user = auth()->user();
 
             $task = $user->tasks()->create([
                 'text' => $request->text
             ]);
 
+            \DB::commit();
+
             return new TaskResource($task);
 
-        } catch (TokenExpiredException $e) {
+        } catch (\Exception $e) {
 
-            return response()->json(['Forbidden'], 403);
+            \DB::rollBack();
 
+            abort(500, 'Server error');
         }
     }
 
     public function markTaskAsDone(Request $request, $taskId)
     {
+        \DB::beginTransaction();
+
         try {
 
-            $user = JWTAuth::parseToken()->authenticate();
+            $user = auth()->user();
 
             $task = $user->tasks->where('id', $taskId)->first();
 
             $task->update(['done' => true]);
 
+            \DB::commit();
+
             return new TaskResource($task);
 
-        } catch (TokenExpiredException $e) {
+        } catch (\Exception $e) {
 
-            return response()->json(['Forbidden'], 403);
+            \DB::rollBack();
 
+            abort(500, 'Server error');
         }
     }
 
     public function editTask(Request $request, $taskId)
     {
+        \DB::beginTransaction();
+
         try {
 
-            $user = JWTAuth::parseToken()->authenticate();
+            $user = auth()->user();
 
             $task = $user->tasks->where('id', $taskId)->first();
 
             $task->update(['text' => $request->text]);
 
+            \DB::commit();
+
             return new TaskResource($task);
 
-        } catch (TokenExpiredException $e) {
+        } catch (\Exception $e) {
 
-            return response()->json(['Forbidden'], 403);
+            \DB::rollBack();
 
+            abort(500, 'Server error');
         }
     }
 
     public function deleteTask(Request $request, $taskId)
     {
+        \DB::beginTransaction();
+
         try {
-            $user = JWTAuth::parseToken()->authenticate();
+
+            $user = auth()->user();
 
             $task = $user->tasks->where('id', $taskId)->first();
 
             $task->delete();
 
+            \DB::commit();
+
             return response()->json([], 200);
 
-        } catch (TokenExpiredException $e) {
+        } catch (\Exception $e) {
 
-            return response()->json(['Forbidden'], 403);
+            \DB::rollBack();
 
+            abort(500, 'Server error');
         }
     }
 }
