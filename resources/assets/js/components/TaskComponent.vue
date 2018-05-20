@@ -156,7 +156,7 @@
                 if (status == 500) {
                     Materialize.toast('Server error!', 5000);
                 }
-                if (status == 403) {
+                if (status == 403 || status == 401) {
                     store.dispatch('logout').then(() => {
                         this.$router.push('/login');
                         Materialize.toast('Logged out', 5000);
