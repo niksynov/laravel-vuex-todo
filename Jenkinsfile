@@ -7,6 +7,7 @@ node {
               sh 'composer install'
             }
         stage('tests') {
+            sh 'php artisan key:generate'
             sh 'vendor/bin/phpunit'
         }
         stage('cleanup') {
