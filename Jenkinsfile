@@ -7,7 +7,7 @@ node {
               sh 'composer install'
             }
         stage('tests') {
-            sh 'vendor/bin/phpunt'
+            sh 'vendor/bin/phpunit'
         }
         stage('cleanup') {
             deleteDir()
